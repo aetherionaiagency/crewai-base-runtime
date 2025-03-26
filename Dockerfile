@@ -36,7 +36,7 @@ RUN python3.11 -m pip install \
     sentence-transformers \
     transformers \
     torchaudio \
-    torch==2.1.0 --index-url https://download.pytorch.org/whl/cu118
+    torch==2.1.0
 
 # Set workdir
 WORKDIR /workspace
