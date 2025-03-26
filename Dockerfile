@@ -13,15 +13,17 @@ RUN apt-get update && apt-get install -y \
     python3.11 \
     python3.11-venv \
     python3.11-dev \
-    python3-pip \
+    wget \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Set python3.11 as default
 RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 1
 
+# Manually install pip for python3.11
+RUN wget https://bootstrap.pypa.io/get-pip.py && python3.11 get-pip.py && rm get-pip.py
+
 # Install Python packages
-RUN python3.11 -m pip install --upgrade pip && \
-    python3.11 -m pip install \
+RUN python3.11 -m pip install \
     openai-whisper \
     crewai \
     pydub \
